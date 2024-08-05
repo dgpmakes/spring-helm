@@ -1,0 +1,41 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: {{ .Values.name}}
+  namespace: {{ .Values.name}}
+  labels:
+    app: {{ .Values.name}}
+    app.kubernetes.io/component: {{ .Values.name}}
+    app.kubernetes.io/instance: {{ .Values.name}}
+    app.kubernetes.io/name: {{ .Values.name}}
+    app.kubernetes.io/part-of: {{ .Values.name}}
+    app.openshift.io/runtime-version: 0.1.0
+
+spec:
+  clusterIP: {{ .Values.ipaddress}}
+  ipFamilies:
+    - IPv4
+  ports:
+    - name: 8080-tcp
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
+    - name: 8443-tcp
+      protocol: TCP
+      port: 8443
+      targetPort: 8443
+    - name: 8778-tcp
+      protocol: TCP
+      port: 8778
+      targetPort: 8778
+  internalTrafficPolicy: Cluster
+  clusterIPs:
+    - {{ .Values.ipaddress}}
+  type: ClusterIP
+  ipFamilyPolicy: SingleStack
+  sessionAffinity: None
+  selector:
+    app: {{ .Values.name}}
+    deployment: {{ .Values.name}}
+status:
+  loadBalancer: {}

@@ -1,0 +1,13 @@
+# Default values for new-workflow.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+name: spring-helm-petclinic-dev
+version: 0.1.0
+imagemanifest: sha256:725275faa53cd18b8549f665e5878b22ee95d40637a6b2bb68d5082bd2ad15ad
+portsprotocol: TCP
+port1: 8080
+port2: 8443
+port3: 8778
+guid: 879
+ipaddress: 172.30.112.180
+replicas: 1
